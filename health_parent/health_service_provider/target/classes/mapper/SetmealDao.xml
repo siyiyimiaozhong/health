@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siyi.dao.SetmealDao">
+    
+    <resultMap id="baseResult" type="com.siyi.pojo.Setmeal">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+        <result column="helpCode" property="helpCode"/>
+        <result column="sex" property="sex"/>
+        <result column="age" property="age"/>
+        <result column="price" property="price"/>
+        <result column="remark" property="remark"/>
+        <result column="attention" property="attention"/>
+        <result column="img" property="img"/>
+    </resultMap>
+
+    <resultMap id="findByIdResultMap" type="com.siyi.pojo.Setmeal" extends="baseResult">
+        <!-- 多对多映射 -->
+        <collection property="checkGroups"
+                    ofType="com.siyi.pojo.CheckGroup"
+                    javaType="ArrayList"
+                    select="com.siyi.dao.CheckGroupDao.findCheckGroupById"
+                    column="id">
+        </collection>
+    </resultMap>
+    
+    <!-- 插入套餐数据 -->
+    <insert id="add" parameterType="com.siyi.pojo.Setmeal">
+        <!-- 通过mybatis框架提供的selectKey标签获得自增产生的ID -->
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into t_setmeal(code,name,sex,helpCode,remark,attention,age,price,img)
+        values(#{code},#{name},#{sex},#{helpCode},#{remark},#{attention},#{age},#{price},#{img})
+    </insert>
+
+    <!-- 插入套餐和检查组多对多关系 -->
+    <insert id="setSetmealAndCheckGroup" parameterType="map">
+        insert into t_setmeal_checkgroup(setmeal_id,checkgroup_id)
+        values(#{setmealId},#{checkgroupId})
+    </insert>
+
+    <!-- 根据提交查找 -->
+    <select id="findByCondition" parameterType="String" resultType="com.siyi.pojo.Setmeal">
+        select * from t_setmeal
+        <if test="value != null and value !='' and value.length>0">
+            where code=#{value} or name=#{value} or helpCode=#{value}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="com.siyi.pojo.Setmeal">
+        select * from t_setmeal
+    </select>
+
+    <select id="findById4Detail" parameterType="int" resultMap="findByIdResultMap">
+        select * from t_setmeal where id=#{id}
+    </select>
+
+    <select id="findById" parameterType="int" resultType="com.siyi.pojo.Setmeal">
+        select * from t_setmeal where id=#{id}
+    </select>
+
+    <select id="findSetmealCount" resultType="map">
+        select s.name,count(o.id) value from t_order o,t_setmeal s where o.setmeal_id = s.id group by s.id
+    </select>
+</mapper>

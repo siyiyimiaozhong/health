@@ -1,0 +1,17 @@
+com\siyi\service\impl\UserServiceImpl.class
+com\siyi\dao\PermissionDao.class
+com\siyi\service\impl\CheckItemServiceImpl.class
+com\siyi\service\impl\OrderServiceImpl.class
+com\siyi\dao\SetmealDao.class
+com\siyi\dao\RoleDao.class
+com\siyi\dao\OrderSettingDao.class
+com\siyi\dao\MemberDao.class
+com\siyi\dao\UserDao.class
+com\siyi\service\impl\ReportServiceImpl.class
+com\siyi\dao\CheckItemDao.class
+com\siyi\dao\OrderDao.class
+com\siyi\service\impl\MemberServiceImpl.class
+com\siyi\dao\CheckGroupDao.class
+com\siyi\service\impl\OrderSettingServiceImpl.class
+com\siyi\service\impl\CheckGroupServiceImpl.class
+com\siyi\service\impl\SetmealServiceImpl.class

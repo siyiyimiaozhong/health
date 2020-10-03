@@ -1,0 +1,7 @@
+com\siyi\controller\CheckItemController.class
+com\siyi\controller\OrderSettingController.class
+com\siyi\controller\CheckGroupController.class
+com\siyi\controller\UserController.class
+com\siyi\controller\SetmealController.class
+com\siyi\service\SpringSecurityUserService.class
+com\siyi\controller\ReportController.class

@@ -1,0 +1,8 @@
+com\siyi\service\MemberService.class
+com\siyi\service\OrderSettingService.class
+com\siyi\service\UserService.class
+com\siyi\service\CheckItemService.class
+com\siyi\service\ReportService.class
+com\siyi\service\CheckGroupService.class
+com\siyi\service\OrderService.class
+com\siyi\service\SetmealService.class
